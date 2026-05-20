@@ -8,56 +8,63 @@ description: Python best practices and conventions. Use when working with Python
 ## When to Use This Skill
 
 Use this skill when:
-- Working with Python projects
-- Writing Python code
-- Setting up Python projects
+- Writing or reviewing Python code
+- Setting up a Python project
+- Designing data structures or error handling
 
-## PEP 8 Guidelines
+## Non-Negotiables
 
-- Use 4 spaces for indentation
-- Maximum line length: 88 characters (Black default)
-- Use snake_case for functions/variables
-- Use PascalCase for classes
-- Use CAPS for constants
+- Always add type hints to function signatures. Code without type hints is harder to read, harder to refactor, and harder to catch bugs in.
+- Always use a virtual environment. Never install packages globally.
+- Use `pyproject.toml` for project config. Not `setup.py`, not `requirements.txt` alone.
 
 ## Type Hints
 
 ```python
-def greet(name: str) -> str:
-    return f"Hello, {name}"
-
-def process_items(items: list[int]) -> dict[str, int]:
-    return {"count": len(items)}
+def process(items: list[str]) -> dict[str, int]:
+    return {item: len(item) for item in items}
 ```
 
-## Best Practices
+For complex types, use `TypedDict` for dicts and `dataclass` for objects:
 
-- Use virtual environments (`venv` or `conda`)
-- Use `pyproject.toml` or `setup.py` for package management
-- Add type hints for better IDE support
-- Use `ruff` or `black` for formatting
-- Use `mypy` for type checking
-
-## Common Patterns
-
-**List comprehension:**
 ```python
-squares = [x**2 for x in range(10)]
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    id: int
+    email: str
+    active: bool = True
 ```
 
-**Dict comprehension:**
+Use `dataclass` when you own the data shape. Use `TypedDict` for external/JSON data you're describing.
+
+## Error Handling
+
+Raise specific exceptions, never generic `Exception`:
+
 ```python
-word_lengths = {word: len(word) for word in words}
+class UserNotFoundError(Exception):
+    pass
+
+def get_user(user_id: int) -> User:
+    user = db.find(user_id)
+    if user is None:
+        raise UserNotFoundError(f"User {user_id} not found")
+    return user
 ```
 
-**Context manager:**
-```python
-with open("file.txt") as f:
-    content = f.read()
-```
+Never use bare `except:` — it catches `KeyboardInterrupt` and `SystemExit`. Always use `except SomeSpecificError:`.
+
+## Tooling
+
+| Tool | Purpose |
+|------|---------|
+| `ruff` | Linting + formatting (replaces flake8 + black) |
+| `mypy` | Static type checking |
+| `pytest` | Testing |
+| `uv` | Fast package + venv management (prefer over pip) |
 
 ## Testing
 
-- Use `pytest` for testing
-- Place tests in `tests/` directory
-- Use descriptive test names
+Use pytest. Place tests in `tests/`. Use fixtures for shared setup. Name tests as sentences: `test_returns_none_when_user_not_found`.

@@ -8,78 +8,51 @@ description: Git workflow guidelines including commit conventions, branch naming
 ## When to Use This Skill
 
 Use this skill when:
-- Writing commit messages
-- Working with branches
-- Merging or rebasing
-- Code reviews
+- Writing a commit message
+- Creating a branch
+- Preparing a PR
 
-## Commit Messages
+## Commits
 
-Format: `<type>(<scope>): <description>`
+**Format:** `<type>(<scope>): <description>`
+
+- Description is lowercase, present tense, no period
+- Scope is optional but useful for large repos
+- Keep it under 72 characters
 
 **Types:**
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation
-- `style`: Code style (formatting)
-- `refactor`: Code refactoring
-- `test`: Tests
-- `chore`: Maintenance
+- `feat` — new capability the user can see
+- `fix` — bug fix
+- `refactor` — restructure without behavior change
+- `test` — adding or fixing tests
+- `docs` — documentation only
+- `chore` — tooling, deps, config
 
-**Examples:**
+**Rules:**
+- One logical change per commit. If you find yourself writing "and" in the message, split it.
+- Never commit directly to `main` or `master`.
+- Never commit with `--no-verify` unless you have an explicit reason and the user approves.
+
+## Branches
+
+`<type>/<short-description>` — kebab-case, no ticket numbers unless the project uses them.
+
 ```
-feat(auth): add login with Google
-fix(api): handle null response from server
-docs(readme): update installation steps
-```
-
-## Branch Naming
-
-```
-<type>/<ticket-id>-<description>
-
-feature/123-add-login
-bugfix/456-fix-header
-hotfix/789-security-patch
+feat/user-auth
+fix/null-pointer-login
+refactor/extract-payment-service
 ```
 
-## Common Workflow
+## Pull Requests
 
-```bash
-# Create feature branch
-git checkout -b feature/my-feature
+- Title follows the same format as a commit message
+- Keep PRs focused — one concern per PR
+- If a PR is getting large, split it before opening
+- Add a short description of *why*, not *what* — the diff shows what
 
-# Make changes and commit
-git add .
-git commit -m "feat: add new feature"
+## Before Merging
 
-# Push and create PR
-git push -u origin feature/my-feature
-
-# Keep branch updated with main
-git fetch origin
-git rebase origin/main
-```
-
-## Useful Commands
-
-```bash
-# Interactive rebase to clean commits
-git rebase -i HEAD~3
-
-# Stash changes
-git stash push -m "work in progress"
-
-# Cherry-pick a commit
-git cherry-pick <commit-hash>
-
-# Undo last commit (keep changes)
-git reset --soft HEAD~1
-```
-
-## Code Review Tips
-
-- Review small, focused PRs
-- Check for: logic errors, edge cases, naming, tests
-- Use suggestion comments for minor fixes
-- Approve when changes look good
+- All CI checks pass
+- At least one review (if team project)
+- No unresolved comments
+- Branch is up to date with base

@@ -8,75 +8,70 @@ description: Go best practices and conventions. Use when working with Go code.
 ## When to Use This Skill
 
 Use this skill when:
-- Working with Go projects
-- Writing Go code
-- Setting up Go projects
+- Writing or reviewing Go code
+- Designing interfaces or error handling
+- Structuring a Go project
 
-## Naming Conventions
+## Non-Negotiables
 
-- Use PascalCase for types and interfaces
-- Use snake_case for file names
-- Use camelCase for variables and functions
-- Use UPPER_SNAKE_CASE for constants
-
-## Project Structure
-
-```
-myproject/
-├── cmd/
-│   └── myapp/
-│       └── main.go
-├── pkg/
-│   └── utils/
-├── internal/
-├── go.mod
-└── go.sum
-```
-
-## Best Practices
-
-- Use `go fmt` for formatting
-- Use `go vet` for static analysis
-- Run `golangci-lint` for comprehensive linting
-- Use interfaces for abstraction
-- Return errors, not nil/empty values
-- Handle errors explicitly
+- Always wrap errors with context using `%w`. Never return bare errors — the caller needs to know where it came from.
+- Never ignore errors with `_`. If you're discarding an error, add a comment explaining why.
+- Always pass `context.Context` as the first argument to functions that do I/O. This enables cancellation and timeouts.
 
 ## Error Handling
 
 ```go
-func readFile(path string) ([]byte, error) {
-    data, err := os.ReadFile(path)
-    if err != nil {
-        return nil, fmt.Errorf("reading %s: %w", path, err)
-    }
-    return data, nil
+// Bad — caller has no context
+return nil, err
+
+// Good — wrapped with where it happened
+return nil, fmt.Errorf("fetching user %d: %w", id, err)
+```
+
+Check errors at every step. Don't batch them. Don't pyramid them with nested ifs — return early.
+
+## Interfaces
+
+- Accept interfaces, return structs. Functions should take the smallest interface they need.
+- Define interfaces at the point of use (consumer package), not at the point of implementation.
+- Keep interfaces small. A one-method interface is ideal.
+
+```go
+// Good — defined where it's used, minimal surface
+type UserStore interface {
+    GetUser(ctx context.Context, id int) (*User, error)
 }
 ```
+
+## Goroutines
+
+Never start a goroutine without a way to stop it. Every goroutine must:
+1. Accept a `context.Context` and stop when it's cancelled
+2. Or have a done channel
+3. Or have a clearly bounded lifetime
+
+Goroutine leaks are silent and accumulate. When in doubt, don't goroutine.
 
 ## Testing
 
-- Use `testing` package
-- Table-driven tests are preferred
-- Test files: `*_test.go`
-- Run with `go test ./...`
+Use table-driven tests for any function with multiple input cases:
 
-## Common Patterns
-
-**Context usage:**
 ```go
-func doWork(ctx context.Context) error {
-    // use ctx for cancellation
+tests := []struct {
+    name  string
+    input int
+    want  int
+}{
+    {"positive", 5, 25},
+    {"zero", 0, 0},
+    {"negative", -3, 9},
 }
-```
-
-**Defer for cleanup:**
-```go
-func readFile(path string) {
-    file, err := os.Open(path)
-    if err != nil {
-        return
-    }
-    defer file.Close()
+for _, tt := range tests {
+    t.Run(tt.name, func(t *testing.T) {
+        got := square(tt.input)
+        if got != tt.want {
+            t.Errorf("got %d, want %d", got, tt.want)
+        }
+    })
 }
 ```

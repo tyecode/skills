@@ -8,77 +8,58 @@ description: Electron best practices for building cross-platform desktop apps. U
 ## When to Use This Skill
 
 Use this skill when:
-- Building desktop apps with Electron
-- Creating cross-platform desktop applications
-- Setting up Electron projects
+- Building or reviewing an Electron app
+- Setting up IPC between processes
+- Packaging for distribution
 
-## Project Structure
+## Security Non-Negotiables
 
-```
-my-app/
-├── main/           # Main process
-│   └── main.js
-├── preload/         # Preload scripts
-│   └── preload.js
-├── renderer/        # Renderer process (React/Vue/HTML)
-│   ├── index.html
-│   └── renderer.js
-└── package.json
-```
+These are not optional. Every Electron app must:
 
-## Main Process
+- `contextIsolation: true` — always. This is the default since Electron 12.
+- `nodeIntegration: false` — always. Never give the renderer process direct access to Node.js.
+- All Node.js access must go through `contextBridge` in a preload script.
+- Validate every IPC message in the main process. Never trust renderer input.
 
 ```javascript
-const { app, BrowserWindow, ipcMain } = require('electron');
-
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-  });
-
-  win.loadFile('renderer/index.html');
-}
-
-app.whenReady().then(createWindow);
-```
-
-## IPC Communication
-
-**Preload (bridge):**
-```javascript
+// preload.js — the only bridge between renderer and Node
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('electronAPI', {
-  send: (channel, data) => ipcRenderer.send(channel, data),
-  receive: (channel, func) => ipcRenderer.on(channel, (event, ...args) => func(...args)),
+contextBridge.exposeInMainWorld('api', {
+  // Expose only specific, named operations — not a generic ipcRenderer.send
+  saveFile: (content) => ipcRenderer.invoke('save-file', content),
 });
 ```
 
-**Renderer:**
+## IPC Pattern
+
+Use `ipcRenderer.invoke` / `ipcMain.handle` for request-response. Avoid `send`/`on` for anything that needs a result.
+
 ```javascript
-window.electronAPI.send('message', 'Hello');
-window.electronAPI.receive('response', (data) => console.log(data));
+// main.js
+ipcMain.handle('save-file', async (event, content) => {
+  // Validate content here before using it
+  if (typeof content !== 'string') throw new Error('Invalid content');
+  await fs.writeFile(path, content);
+});
 ```
 
-## Best Practices
+## Process Boundaries
 
-- Use `electron-builder` for packaging
-- Use `electron-log` for logging
-- Use contextBridge for IPC (not nodeIntegration)
-- Enable contextIsolation
-- Handle app lifecycle properly
+| Process | Responsibility | Has Node.js access |
+|---------|---------------|-------------------|
+| Main | OS integration, file system, windows | Yes |
+| Preload | Bridge — expose safe APIs to renderer | Limited (no remote) |
+| Renderer | UI only — treat like a browser | No |
+
+If you're putting business logic in the renderer, move it to the main process.
 
 ## Packaging
 
+Use `electron-builder`. Configure in `package.json` under `"build"`. Always sign your app for distribution — unsigned apps show security warnings on macOS and Windows.
+
 ```bash
-npx electron-builder --win    # Windows
-npx electron-builder --mac    # macOS
-npx electron-builder --linux   # Linux
+npx electron-builder --mac    # macOS (.dmg)
+npx electron-builder --win    # Windows (.exe installer)
+npx electron-builder --linux  # Linux (.AppImage)
 ```
-
-## Common Tools
-
-- electron-builder - packaging
-- electron-log - logging
-- electron-store - persistent storage

@@ -8,61 +8,68 @@ description: Node.js best practices and conventions. Use when working with Node.
 ## When to Use This Skill
 
 Use this skill when:
-- Working with Node.js backend
-- Creating APIs
-- Building server applications
+- Building a Node.js API or server
+- Structuring a Node.js project
+- Handling errors in a Node.js app
 
-## Best Practices
+## Non-Negotiables
 
-- Use ESM (`"type": "module"`) in package.json
-- Use async/await over callbacks
-- Handle errors properly
-- Use environment variables for config
+- Use ESM (`"type": "module"` in package.json). CommonJS is legacy.
+- Never mix callbacks and promises. Use `util.promisify` to convert callback APIs.
+- Validate all incoming data at the boundary with Zod before it enters your application logic.
+
+## Error Handling
+
+Never swallow errors silently. Every `catch` must either handle the error or re-throw it with context.
+
+Use structured error types — not raw `new Error('something went wrong')`:
+
+```javascript
+class AppError extends Error {
+  constructor(message, code, cause) {
+    super(message, { cause });
+    this.code = code;
+  }
+}
+```
+
+In Express/Fastify, funnel all errors to a central error handler. Never send raw stack traces to clients in production.
+
+## Async Patterns
+
+Async/await everywhere. Avoid raw `.then()` chains — they make error propagation hard to follow.
+
+For Express, wrap async route handlers to catch thrown errors:
+
+```javascript
+const asyncHandler = (fn) => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next);
+```
+
+## Input Validation
+
+Validate at the route layer before anything else:
+
+```javascript
+import { z } from 'zod';
+
+const schema = z.object({ email: z.string().email() });
+
+app.post('/users', asyncHandler(async (req, res) => {
+  const body = schema.parse(req.body); // throws ZodError if invalid
+  // ...
+}));
+```
 
 ## Project Structure
 
 ```
 src/
-├── routes/
-├── controllers/
-├── services/
-├── models/
+├── routes/       # HTTP layer only — parse input, call service, send response
+├── services/     # Business logic — no req/res here
+├── models/       # DB access
 ├── middleware/
-├── utils/
-└── index.js / server.js
+└── index.js
 ```
 
-## Express Patterns
-
-```javascript
-// Route handler
-app.get('/users', async (req, res) => {
-  try {
-    const users = await getUsers();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-```
-
-## Error Handling
-
-```javascript
-// Async error wrapper
-const asyncHandler = (fn) => (req, res, next) =>
-  Promise.resolve(fn(req, res, next)).catch(next);
-```
-
-## Common Tools
-
-- Express, Fastify - web frameworks
-- Prisma, Drizzle - ORMs
-- Zod - validation
-- Dotenv - env variables
-
-## Testing
-
-- Use Jest or Vitest
-- Supertest for API testing
-- Test routes, not implementation
+Keep the HTTP layer thin. Business logic in services, not route handlers.

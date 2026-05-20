@@ -8,63 +8,60 @@ description: Astro best practices and conventions. Use when working with Astro p
 ## When to Use This Skill
 
 Use this skill when:
-- Working with Astro projects
-- Building static sites with Astro
-- Creating content-focused websites
+- Building or modifying an Astro project
+- Deciding whether to add JavaScript to a component
+- Working with content collections
 
-## Project Structure
+## The Default: No JavaScript
 
+Astro ships zero JavaScript by default. That is the goal, not a limitation. Only add JavaScript when a component genuinely requires interactivity that cannot be done with CSS.
+
+When you add a `client:*` directive, you are making a deliberate tradeoff — more interactivity, more bundle weight. Be intentional.
+
+## Hydration Directives — When to Use Each
+
+| Directive | Use when |
+|-----------|----------|
+| `client:load` | Component must be interactive immediately on page load |
+| `client:idle` | Component can wait until the browser is idle |
+| `client:visible` | Component only needs to hydrate when scrolled into view |
+| `client:only` | Component has no server-rendered output (e.g. canvas, maps) |
+
+When in doubt, `client:visible` is safer than `client:load` — it defers work until needed.
+
+## Content Collections
+
+Use content collections for any structured content: blog posts, docs, product listings. Do not manage structured content as loose files without a collection schema.
+
+Define schemas with Zod in `src/content/config.ts`:
+
+```typescript
+import { defineCollection, z } from 'astro:content';
+
+const blog = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog };
 ```
-src/
-├── components/
-├── layouts/
-├── pages/
-│   └── index.astro
-├── content/
-│   └── config.ts
-└── styles/
-```
 
-## Best Practices
+## Component vs Page
 
-- Use `.astro` files for static pages
-- Use components for reusable UI
-- Use layouts for page wrappers
-- Use content collections for blog/docs
-
-## Key Features
-
-- Zero JS by default
-- Island architecture
-- Content collections
-- View Transitions API
-
-## Common Patterns
-
-**Component:**
-```astro
----
-const { title } = Astro.props;
----
-<h1>{title}</h1>
-<slot />
-```
-
-**Layout:**
-```astro
----
-import BaseHead from '../components/BaseHead.astro';
----
-<html>
-  <BaseHead />
-  <body>
-    <slot />
-  </body>
-</html>
-```
+- Pages go in `src/pages/` — every file becomes a route
+- Reusable UI goes in `src/components/`
+- Use layouts (`src/layouts/`) for shared page structure — not a component
 
 ## Integrations
 
-- `@astrojs/react` - React support
-- `@astrojs/tailwind` - Tailwind CSS
-- `@astrojs/sitemap` - Sitemap generation
+Add integrations only when needed. Each one adds build complexity.
+
+| Need | Integration |
+|------|-------------|
+| React/Vue/Svelte components | `@astrojs/react` etc. |
+| Tailwind CSS | `@astrojs/tailwind` |
+| SEO sitemap | `@astrojs/sitemap` |
+| MDX support | `@astrojs/mdx` |
