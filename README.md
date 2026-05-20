@@ -46,6 +46,8 @@ Install based on your tech stack:
 | Skill | Command | When to Use |
 |-------|---------|-------------|
 | **react** | `@react` | React or Next.js projects |
+| **astro** | `@astro` | Astro static sites |
+| **nodejs** | `@nodejs` | Node.js backend projects |
 
 ### Languages
 | Skill | Command | When to Use |
