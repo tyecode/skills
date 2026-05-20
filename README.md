@@ -48,6 +48,7 @@ Install based on your tech stack:
 | **react** | `@react` | React or Next.js projects |
 | **astro** | `@astro` | Astro static sites |
 | **nodejs** | `@nodejs` | Node.js backend projects |
+| **electron** | `@electron` | Electron desktop apps |
 
 ### Languages
 | Skill | Command | When to Use |
