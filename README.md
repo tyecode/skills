@@ -5,34 +5,43 @@ Personal skills for AI coding agents. Based on Karpathy-style guidelines.
 ## Quickstart
 
 ```bash
-npx skills add tyecode/skills
+npx skills add tyecode/skills -g -y
 ```
 
-## Skills
+## Skills Structure
 
-- **karpathy-guidelines** - Think before coding, simplicity first, surgical changes, goal-driven execution
+### Base (Works on any project)
+- **karpathy-guidelines** - Core coding behavior: think before coding, simplicity, surgical changes
 - **grill-me** - Clarify requirements by interviewing the user
 - **handoff** - Create handoff documents for another agent
 
-## Principles
+### Frameworks
+- **react** - React and Next.js best practices
 
-1. **Think Before Coding** - Don't assume, ask questions
-2. **Simplicity First** - Minimum code, no speculative features
-3. **Surgical Changes** - Touch only what's needed
-4. **Goal-Driven** - Define success criteria, verify with tests
+### Languages
+- **typescript** - TypeScript conventions and best practices
+
+### Tools
+- **tdd** - Test-driven development guidelines
+- **deployment** - Deployment workflow guidelines
 
 ## Installation
+
+### All Skills (Global)
+```bash
+npx skills add tyecode/skills -g -y
+```
+
+### Specific Skill
+```bash
+npx skills add tyecode/skills@base/karpathy-guidelines
+npx skills add tyecode/skills@react
+npx skills add tyecode/skills@typescript
+```
 
 ### Per Project
 ```bash
 npx skills add tyecode/skills@karpathy-guidelines
-npx skills add tyecode/skills@grill-me
-npx skills add tyecode/skills@handoff
-```
-
-### Global
-```bash
-npx skills add tyecode/skills -g -y
 ```
 
 ## Also Supports
