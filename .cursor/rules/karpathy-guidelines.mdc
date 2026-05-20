@@ -1,33 +1,96 @@
 ---
-description: Behavioral guidelines to reduce common LLM coding mistakes.
+description: Tyecode's coding guidelines — think before coding, simplicity, security, and surgical changes.
+alwaysApply: true
 ---
 
-# Karpathy Guidelines
+# Tyecode's Coding Guidelines
 
-Follow these principles when writing, reviewing, or refactoring code:
+## Core Principles
 
-## 1. Think Before Coding
+### 1. Think Before Coding
 
 - Don't assume. Don't hide confusion.
 - State assumptions explicitly. If uncertain, ask.
 - If something is unclear, stop and ask.
+- Present multiple interpretations if ambiguity exists.
 
-## 2. Simplicity First
+### 2. Simplicity First
 
 - Minimum code that solves the problem.
 - No features beyond what was asked.
 - No abstractions for single-use code.
+- No "flexibility" that wasn't requested.
 - If 200 lines could be 50, rewrite it.
 
-## 3. Surgical Changes
+### 3. Surgical Changes
 
 - Touch only what you must.
-- Don't "improve" adjacent code.
+- Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
 - Remove imports YOUR changes made unused.
 
-## 4. Goal-Driven Execution
+### 4. Goal-Driven Execution
 
-- Define success criteria
+- Define success criteria before starting.
 - "Add validation" → "Write tests, then make them pass"
 - "Fix the bug" → "Write test that reproduces it, then fix"
+- For multi-step tasks: state a plan with verification steps.
+
+---
+
+## Code Style
+
+### TypeScript / JavaScript
+
+- Use strict mode always
+- Prefer `const` over `let`, avoid `var`
+- Use meaningful variable names
+- Use `unknown` instead of `any`
+- No `as` casts inside business logic — fix the types instead
+
+### React
+
+- Use functional components with hooks
+- Keep components small and focused
+- Use composition over prop drilling
+- Extract reusable logic into custom hooks
+
+### Git
+
+- Use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`
+- One logical change per commit
+- Never commit directly to `main`
+- Branch naming: `feature/description` or `fix/description`
+
+---
+
+## Error Handling
+
+- Handle errors explicitly — never silently catch
+- Return errors, don't throw unless truly exceptional
+- Use specific error types, not generic `new Error('something went wrong')`
+- Log errors with context, never swallow them
+
+---
+
+## Testing
+
+- Write a failing test before fixing any bug
+- Test behavior, not implementation
+- Keep tests fast and isolated
+- Use descriptive test names: `it('returns null when user is not found')`
+
+---
+
+## Security
+
+Before marking any feature complete that touches user input, auth, or data:
+
+- Validate all input at the boundary — never trust user data
+- Use parameterized queries — never concatenate user input into SQL
+- Check authorization on every protected route (not just authentication)
+- Never log passwords, tokens, API keys, or PII
+- Never hardcode secrets — use environment variables
+- Return generic error messages to clients — never expose stack traces
+- Rate limit public API endpoints

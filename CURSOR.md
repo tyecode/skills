@@ -1,15 +1,15 @@
-# Cursor Rules
+# Cursor Setup
 
-These guidelines also apply when using Cursor.
+Copy `.cursor/rules/karpathy-guidelines.mdc` to your project's `.cursor/rules/` folder:
 
-## Usage
+```bash
+cp path/to/tyecode-skills/.cursor/rules/karpathy-guidelines.mdc .cursor/rules/
+```
 
-Copy `.cursor/rules/karpathy-guidelines.mdc` to your project's `.cursor/rules/` folder to enable these guidelines in Cursor.
+Or install via the skills CLI (works with Cursor automatically):
 
-## Principles
+```bash
+npx skills add tyecode/skills@karpathy-guidelines
+```
 
-Same as CLAUDE.md:
-1. Think Before Coding
-2. Simplicity First
-3. Surgical Changes
-4. Goal-Driven Execution
+The rule is set to `alwaysApply: true` — Cursor will load it on every session automatically.
