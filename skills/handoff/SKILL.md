@@ -27,5 +27,3 @@ Include:
 Do not duplicate content already in PRDs, plans, ADRs, issues, or commits. Reference them by path instead.
 
 Redact sensitive info (API keys, passwords, PII).
-
-If user passes arguments describing what next session will focus on, tailor the doc accordingly.

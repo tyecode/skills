@@ -32,16 +32,29 @@ npx skills add tyecode/skills -g -y
 npx skills add tyecode/skills -g -y
 ```
 
-### Specific Skill
+### Per Project - Choose What You Need
+
+**Base (works on any project):**
 ```bash
-npx skills add tyecode/skills@base/karpathy-guidelines
+npx skills add tyecode/skills@karpathy-guidelines
+npx skills add tyecode/skills@grill-me
+npx skills add tyecode/skills@handoff
+```
+
+**Framework-specific:**
+```bash
 npx skills add tyecode/skills@react
+```
+
+**Language-specific:**
+```bash
 npx skills add tyecode/skills@typescript
 ```
 
-### Per Project
+**Tools:**
 ```bash
-npx skills add tyecode/skills@karpathy-guidelines
+npx skills add tyecode/skills@tdd
+npx skills add tyecode/skills@deployment
 ```
 
 ## Also Supports
