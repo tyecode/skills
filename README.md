@@ -9,31 +9,22 @@ A collection of skills for AI coding agents. Each skill changes how the agent **
 
 Skills are instructions loaded into AI coding agents via the [skills.sh](https://skills.sh) platform. They work as slash commands — `/diagnose`, `/grill-me`, `/security` — that encode a specific behavior the agent follows when invoked: a debugging loop, a security checklist, a communication mode.
 
-## Supported Agents
-
-- **Claude Code** — primary target
-- **Cursor** — via `.cursor/rules/`
-
 ## Quickstart
 
-Install base skills — works on any project, any stack:
+Install base skills globally — works on any project, any stack:
 
 ```bash
 npx skills add tyecode/skills -s karpathy-guidelines,diagnose,zoom-out,tdd,git-workflow,security,grill-me,handoff,caveman -g -y
 ```
 
-Install everything (base + stack):
+Then install stack skills per project based on what you're using:
 
 ```bash
-npx skills add tyecode/skills -g -y
-```
-
-Install individual skills:
-
-```bash
-npx skills add tyecode/skills@diagnose
 npx skills add tyecode/skills@react
-npx skills add tyecode/skills@security
+npx skills add tyecode/skills@nodejs
+npx skills add tyecode/skills@typescript
+npx skills add tyecode/skills@electron
+npx skills add tyecode/skills@setup-pre-commit
 ```
 
 ---
