@@ -51,6 +51,8 @@ Install based on your tech stack:
 | Skill | Command | When to Use |
 |-------|---------|-------------|
 | **typescript** | `@typescript` | TypeScript projects |
+| **python** | `@python` | Python projects |
+| **go** | `@go` | Go projects |
 
 ### Tools
 | Skill | Command | When to Use |
