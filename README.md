@@ -72,7 +72,6 @@ Works on any codebase. Install these for better coding habits:
 | **tdd** | Test-driven development: red → green → refactor |
 | **git-workflow** | Commit conventions, branch naming, code review |
 | **deployment** | Deployment workflow and platform guides |
-| **setup-pre-commit** | Set up Husky + lint-staged for Node.js projects |
 
 ---
 
@@ -93,7 +92,6 @@ Domain-agnostic. Work for any knowledge work, not just coding:
 | Skill | When to Use |
 |-------|-------------|
 | **react** | React or Next.js projects |
-| **astro** | Astro static sites |
 | **nodejs** | Node.js backend projects |
 | **electron** | Electron desktop apps |
 | **setup-pre-commit** | Node.js projects (Husky + lint-staged) |
@@ -105,8 +103,6 @@ Domain-agnostic. Work for any knowledge work, not just coding:
 | Skill | When to Use |
 |-------|-------------|
 | **typescript** | TypeScript projects |
-| **python** | Python projects |
-| **go** | Go projects |
 
 ---
 
