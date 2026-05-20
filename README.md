@@ -14,6 +14,8 @@ npx skills add tyecode/skills -g -y
 - **karpathy-guidelines** - Core coding behavior: think before coding, simplicity, surgical changes
 - **grill-me** - Clarify requirements by interviewing the user
 - **handoff** - Create handoff documents for another agent
+- **diagnose** - Debugging loop for hard bugs: reproduce → hypothesise → instrument → fix
+- **zoom-out** - Get broader context when exploring unfamiliar code
 
 ### Frameworks
 - **react** - React and Next.js best practices
