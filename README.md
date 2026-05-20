@@ -2,44 +2,12 @@
 
 Personal skills for AI coding agents. Based on Karpathy-style guidelines.
 
-## Quickstart
+## Quickstart (Recommended)
+
+Install base skills for any project:
 
 ```bash
-npx skills add tyecode/skills -g -y
-```
-
-## Skills Structure
-
-### Base (Works on any project)
-- **karpathy-guidelines** - Core coding behavior: think before coding, simplicity, surgical changes
-- **grill-me** - Clarify requirements by interviewing the user
-- **handoff** - Create handoff documents for another agent
-- **diagnose** - Debugging loop for hard bugs: reproduce → hypothesise → instrument → fix
-- **zoom-out** - Get broader context when exploring unfamiliar code
-- **caveman** - Ultra-compressed communication mode (~75% less tokens)
-
-### Frameworks
-- **react** - React and Next.js best practices
-
-### Languages
-- **typescript** - TypeScript conventions and best practices
-
-### Tools
-- **tdd** - Test-driven development guidelines
-- **deployment** - Deployment workflow guidelines
-- **setup-pre-commit** - Set up Husky + lint-staged + Prettier hooks
-
-## Installation
-
-### All Skills (Global)
-```bash
-npx skills add tyecode/skills -g -y
-```
-
-### Per Project - Choose What You Need
-
-**Base (works on any project):**
-```bash
+# Install all base skills (works on ANY project)
 npx skills add tyecode/skills@karpathy-guidelines
 npx skills add tyecode/skills@grill-me
 npx skills add tyecode/skills@handoff
@@ -48,22 +16,50 @@ npx skills add tyecode/skills@zoom-out
 npx skills add tyecode/skills@caveman
 ```
 
-**Framework-specific:**
+Or install all globally (includes project-specific skills):
 ```bash
-npx skills add tyecode/skills@react
+npx skills add tyecode/skills -g -y
 ```
 
-**Language-specific:**
-```bash
-npx skills add tyecode/skills@typescript
-```
+---
 
-**Tools:**
-```bash
-npx skills add tyecode/skills@tdd
-npx skills add tyecode/skills@deployment
-npx skills add tyecode/skills@setup-pre-commit
-```
+## Base Skills (Core - Works on ANY Project)
+
+These 6 skills work regardless of language/framework. **Always install these:**
+
+| Skill | Command | Purpose |
+|-------|---------|---------|
+| **karpathy-guidelines** | `@karpathy-guidelines` | Core coding behavior: think before coding, simplicity, surgical changes |
+| **grill-me** | `@grill-me` | Clarify requirements by interviewing the user |
+| **handoff** | `@handoff` | Transfer work to another agent |
+| **diagnose** | `@diagnose` | Debug hard bugs: reproduce → hypothesise → instrument → fix |
+| **zoom-out** | `@zoom-out` | Get context when exploring unfamiliar code |
+| **caveman** | `@caveman` | Ultra-compressed mode (~75% less tokens) |
+
+---
+
+## Project-Specific Skills (Optional)
+
+Install based on your tech stack:
+
+### Frameworks
+| Skill | Command | When to Use |
+|-------|---------|-------------|
+| **react** | `@react` | React or Next.js projects |
+
+### Languages
+| Skill | Command | When to Use |
+|-------|---------|-------------|
+| **typescript** | `@typescript` | TypeScript projects |
+
+### Tools
+| Skill | Command | When to Use |
+|-------|---------|-------------|
+| **tdd** | `@tdd` | Writing tests |
+| **deployment** | `@deployment` | Deploying applications |
+| **setup-pre-commit** | `@setup-pre-commit` | Node.js projects (Husky + lint-staged) |
+
+---
 
 ## Also Supports
 
