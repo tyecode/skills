@@ -1,5 +1,7 @@
 # Tyecode's Agent Skills
 
+[![skills.sh](https://skills.sh/b/tyecode/skills)](https://skills.sh/tyecode/skills)
+
 Personal skills for AI coding agents. Based on Karpathy-style guidelines.
 
 ## Quickstart (Recommended)
