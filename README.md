@@ -55,6 +55,7 @@ Install based on your tech stack:
 ### Tools
 | Skill | Command | When to Use |
 |-------|---------|-------------|
+| **git-workflow** | `@git-workflow` | Commit conventions, branch naming, code review |
 | **tdd** | `@tdd` | Writing tests |
 | **deployment** | `@deployment` | Deploying applications |
 | **setup-pre-commit** | `@setup-pre-commit` | Node.js projects (Husky + lint-staged) |
