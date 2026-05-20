@@ -4,24 +4,59 @@
 
 Personal skills for AI coding agents. Based on Karpathy-style guidelines.
 
-## Quickstart (Recommended)
+These skills help agents code better: think before coding, verify before committing, debug systematically, and communicate precisely.
 
-Install base skills for any project:
+## Quickstart
 
-```bash
-# Install all base skills (works on ANY project)
-npx skills add tyecode/skills@karpathy-guidelines
-npx skills add tyecode/skills@grill-me
-npx skills add tyecode/skills@handoff
-npx skills add tyecode/skills@diagnose
-npx skills add tyecode/skills@zoom-out
-npx skills add tyecode/skills@caveman
-```
+Install all base skills (works on ANY project):
 
-Or install all globally (includes project-specific skills):
 ```bash
 npx skills add tyecode/skills -g -y
 ```
+
+Or install individual skills:
+
+```bash
+npx skills add tyecode/skills@karpathy-guidelines
+npx skills add tyecode/skills@grill-me
+npx skills add tyecode/skills@diagnose
+```
+
+---
+
+## Why These Skills Exist
+
+I built these skills to fix common failure modes I see with AI coding agents.
+
+### #1: The Agent Doesn't Understand What You Want
+
+**The Problem**: You think the agent knows what you want. Then you see what they've built - and it's completely wrong.
+
+**The Fix**: Use `/grill-me` to interview you before coding. Clarifies requirements by asking detailed questions until every branch of the decision tree is resolved.
+
+### #2: The Agent Codes Without Thinking
+
+**The Problem**: Agents often jump straight to code without understanding the codebase, leading to incorrect implementations or poor architectural decisions.
+
+**The Fix**: Use `/karpathy-guidelines` - core coding behavior that emphasizes thinking before coding, simplicity, and surgical changes.
+
+### #3: The Code Doesn't Work and You Can't Debug It
+
+**The Problem**: When bugs appear, agents spin in circles without making progress.
+
+**The Fix**: Use `/diagnose` - disciplined diagnosis loop: reproduce → minimise → hypothesise → instrument → fix → regression-test.
+
+### #4: Hard to Transfer Work to Another Agent
+
+**The Problem**: When you hand off to another agent (or after a session ends), context is lost and the next agent starts from scratch.
+
+**The Fix**: Use `/handoff` to compact the current conversation into a clear document so another agent can continue seamlessly.
+
+### #5: Token Waste on Familiar Code
+
+**The Problem**: Agents explain code in massive detail even when you already understand it.
+
+**The Fix**: Use `/caveman` for ultra-compressed communication (~75% less tokens) while keeping full technical accuracy.
 
 ---
 
@@ -31,7 +66,7 @@ These 6 skills work regardless of language/framework. **Always install these:**
 
 | Skill | Command | Purpose |
 |-------|---------|---------|
-| **karpathy-guidelines** | `@karpathy-guidelines` | Core coding behavior: think before coding, simplicity, surgical changes |
+| **karpathy-guidelines** | `@karpathy-guidelines` | Think before coding, simplicity, surgical changes |
 | **grill-me** | `@grill-me` | Clarify requirements by interviewing the user |
 | **handoff** | `@handoff` | Transfer work to another agent |
 | **diagnose** | `@diagnose` | Debug hard bugs: reproduce → hypothesise → instrument → fix |
