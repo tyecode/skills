@@ -71,7 +71,6 @@ Works on any codebase. Install these for better coding habits:
 | **zoom-out** | Get context when exploring unfamiliar code |
 | **tdd** | Test-driven development: red → green → refactor |
 | **git-workflow** | Commit conventions, branch naming, code review |
-| **deployment** | Deployment workflow and platform guides |
 
 ---
 
