@@ -1,6 +1,8 @@
 # Tyecode's Coding Guidelines
 
-Follow these principles for better code quality.
+Copy this file to your project root to load these guidelines into Claude Code.
+
+For slash commands, install the skills: `npx skills add tyecode/skills -g -y`
 
 ---
 
@@ -31,10 +33,10 @@ Follow these principles for better code quality.
 
 ### 4. Goal-Driven Execution
 
-- Define success criteria
+- Define success criteria before starting.
 - "Add validation" → "Write tests, then make them pass"
 - "Fix the bug" → "Write test that reproduces it, then fix"
-- For multi-step tasks: state a plan with verification steps
+- For multi-step tasks: state a plan with verification steps.
 
 ---
 
@@ -45,40 +47,54 @@ Follow these principles for better code quality.
 - Use strict mode always
 - Prefer `const` over `let`, avoid `var`
 - Use meaningful variable names
-- Use interfaces for object shapes, types for unions
-- Avoid `any`, use `unknown` instead
+- Use `unknown` instead of `any`
+- No `as` casts inside business logic — fix the types instead
 
 ### React
 
 - Use functional components with hooks
 - Keep components small and focused
-- Use composition over inheritance
+- Use composition over prop drilling
 - Extract reusable logic into custom hooks
 
 ### Git
 
-- Use conventional commits: `feat:`, `fix:`, `docs:`
-- Write descriptive commit messages
+- Use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`
+- One logical change per commit
+- Never commit directly to `main`
 - Branch naming: `feature/description` or `fix/description`
-- Rebase over merge for cleaner history
 
 ---
 
 ## Error Handling
 
-- Handle errors explicitly, don't silently catch
+- Handle errors explicitly — never silently catch
 - Return errors, don't throw unless truly exceptional
-- Use proper error types
-- Log errors with context
+- Use specific error types, not generic `new Error('something went wrong')`
+- Log errors with context, never swallow them
 
 ---
 
 ## Testing
 
-- Write tests before fixing bugs
+- Write a failing test before fixing any bug
 - Test behavior, not implementation
 - Keep tests fast and isolated
-- Use descriptive test names
+- Use descriptive test names: `it('returns null when user is not found')`
+
+---
+
+## Security
+
+Before marking any feature complete that touches user input, auth, or data:
+
+- Validate all input at the boundary — never trust user data
+- Use parameterized queries — never concatenate user input into SQL
+- Check authorization on every protected route (not just authentication)
+- Never log passwords, tokens, API keys, or PII
+- Never hardcode secrets — use environment variables
+- Return generic error messages to clients — never expose stack traces
+- Rate limit public API endpoints
 
 ---
 
@@ -87,17 +103,24 @@ Follow these principles for better code quality.
 - Be concise but complete
 - Ask questions when unclear
 - Surface tradeoffs when decisions matter
-- Use caveman mode when asked (drop filler, keep substance)
 
 ---
 
 ## When to Use Skills
 
-Use these skills as needed:
-
-- `/grill-me` - When starting something new
-- `/diagnose` - When debugging hard bugs
-- `/zoom-out` - When exploring unfamiliar code
-- `/tdd` - When writing tests
-- `/handoff` - When passing work to another agent
-- `/caveman` - When user wants ultra-compressed responses
+| Skill | When |
+|-------|------|
+| `/karpathy-guidelines` | Writing or reviewing any code |
+| `/grill-me` | Before starting something new |
+| `/diagnose` | Debugging a hard bug |
+| `/zoom-out` | Exploring unfamiliar code |
+| `/tdd` | Writing tests or fixing bugs |
+| `/git-workflow` | Writing commits or opening PRs |
+| `/security` | Before marking any feature complete |
+| `/handoff` | Passing work to another agent |
+| `/caveman` | When you want compressed responses |
+| `/react` | Working on React or Next.js |
+| `/nodejs` | Working on Node.js backend |
+| `/typescript` | Writing TypeScript |
+| `/electron` | Building Electron apps |
+| `/setup-pre-commit` | Setting up pre-commit hooks |
