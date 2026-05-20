@@ -60,47 +60,53 @@ I built these skills to fix common failure modes I see with AI coding agents.
 
 ---
 
-## Base Skills (Core - Works on ANY Project)
+## `engineering/` — Code Process Skills
 
-These 6 skills work regardless of language/framework. **Always install these:**
+Works on any codebase. Install these for better coding habits:
 
-| Skill | Command | Purpose |
-|-------|---------|---------|
-| **karpathy-guidelines** | `@karpathy-guidelines` | Think before coding, simplicity, surgical changes |
-| **grill-me** | `@grill-me` | Clarify requirements by interviewing the user |
-| **handoff** | `@handoff` | Transfer work to another agent |
-| **diagnose** | `@diagnose` | Debug hard bugs: reproduce → hypothesise → instrument → fix |
-| **zoom-out** | `@zoom-out` | Get context when exploring unfamiliar code |
-| **caveman** | `@caveman` | Ultra-compressed mode (~75% less tokens) |
+| Skill | Purpose |
+|-------|---------|
+| **karpathy-guidelines** | Think before coding, simplicity, surgical changes |
+| **diagnose** | Debug hard bugs: reproduce → hypothesise → instrument → fix |
+| **zoom-out** | Get context when exploring unfamiliar code |
+| **tdd** | Test-driven development: red → green → refactor |
+| **git-workflow** | Commit conventions, branch naming, code review |
+| **deployment** | Deployment workflow and platform guides |
+| **setup-pre-commit** | Set up Husky + lint-staged for Node.js projects |
 
 ---
 
-## Project-Specific Skills (Optional)
+## `productivity/` — Meta Skills
 
-Install based on your tech stack:
+Domain-agnostic. Work for any knowledge work, not just coding:
 
-### Frameworks
-| Skill | Command | When to Use |
-|-------|---------|-------------|
-| **react** | `@react` | React or Next.js projects |
-| **astro** | `@astro` | Astro static sites |
-| **nodejs** | `@nodejs` | Node.js backend projects |
-| **electron** | `@electron` | Electron desktop apps |
+| Skill | Purpose |
+|-------|---------|
+| **grill-me** | Clarify requirements by interviewing the user |
+| **handoff** | Compact current work into a doc for another agent |
+| **caveman** | Ultra-compressed mode (~75% less tokens) |
 
-### Languages
-| Skill | Command | When to Use |
-|-------|---------|-------------|
-| **typescript** | `@typescript` | TypeScript projects |
-| **python** | `@python` | Python projects |
-| **go** | `@go` | Go projects |
+---
 
-### Tools
-| Skill | Command | When to Use |
-|-------|---------|-------------|
-| **git-workflow** | `@git-workflow` | Commit conventions, branch naming, code review |
-| **tdd** | `@tdd` | Writing tests |
-| **deployment** | `@deployment` | Deploying applications |
-| **setup-pre-commit** | `@setup-pre-commit` | Node.js projects (Husky + lint-staged) |
+## `frameworks/` — Framework Skills
+
+| Skill | When to Use |
+|-------|-------------|
+| **react** | React or Next.js projects |
+| **astro** | Astro static sites |
+| **nodejs** | Node.js backend projects |
+| **electron** | Electron desktop apps |
+| **setup-pre-commit** | Node.js projects (Husky + lint-staged) |
+
+---
+
+## `languages/` — Language Skills
+
+| Skill | When to Use |
+|-------|-------------|
+| **typescript** | TypeScript projects |
+| **python** | Python projects |
+| **go** | Go projects |
 
 ---
 
