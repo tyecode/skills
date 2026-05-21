@@ -11,13 +11,13 @@ Skills are instructions loaded into AI coding agents via the [skills.sh](https:/
 
 ## Quickstart
 
-Install globally and pick the skills you want interactively:
+Install all skills globally:
 
 ```bash
 npx skills add tyecode/skills -g
 ```
 
-Or install individual skills directly:
+Or install individual skills:
 
 ```bash
 npx skills add tyecode/skills@diagnose
