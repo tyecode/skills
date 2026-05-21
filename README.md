@@ -11,20 +11,18 @@ Skills are instructions loaded into AI coding agents via the [skills.sh](https:/
 
 ## Quickstart
 
-Install base skills globally — works on any project, any stack:
+Install globally and pick the skills you want interactively:
 
 ```bash
-npx skills add tyecode/skills -s karpathy-guidelines,diagnose,zoom-out,tdd,git-workflow,security,grill-me,handoff,caveman -g -y
+npx skills add tyecode/skills -g
 ```
 
-Then install stack skills per project based on what you're using:
+Or install individual skills directly:
 
 ```bash
+npx skills add tyecode/skills@diagnose
+npx skills add tyecode/skills@security
 npx skills add tyecode/skills@react
-npx skills add tyecode/skills@nodejs
-npx skills add tyecode/skills@typescript
-npx skills add tyecode/skills@electron
-npx skills add tyecode/skills@setup-pre-commit
 ```
 
 ---
