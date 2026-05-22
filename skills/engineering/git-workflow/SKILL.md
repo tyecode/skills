@@ -8,6 +8,7 @@ description: Git workflow guidelines including commit conventions, branch naming
 ## When to Use This Skill
 
 Use this skill when:
+
 - Writing a commit message
 - Creating a branch
 - Preparing a PR
@@ -21,6 +22,7 @@ Use this skill when:
 - Keep it under 72 characters
 
 **Types:**
+
 - `feat` — new capability the user can see
 - `fix` — bug fix
 - `refactor` — restructure without behavior change
@@ -29,7 +31,9 @@ Use this skill when:
 - `chore` — tooling, deps, config
 
 **Rules:**
-- One logical change per commit. If you find yourself writing "and" in the message, split it.
+
+- **CRITICAL: Granular Multi-Commits.** Do NOT use `git add .` to bulk-commit an entire workspace if multiple distinct tasks were accomplished. You MUST group changed files logically (e.g., `git add src/components` → commit, `git add src/utils` → commit).
+- One logical change per commit. If you find yourself writing "and" in the message, split the commit into two separate commits.
 - Never commit directly to `main` or `master`.
 - Never commit with `--no-verify` unless you have an explicit reason and the user approves.
 
@@ -48,7 +52,7 @@ refactor/extract-payment-service
 - Title follows the same format as a commit message
 - Keep PRs focused — one concern per PR
 - If a PR is getting large, split it before opening
-- Add a short description of *why*, not *what* — the diff shows what
+- Add a short description of _why_, not _what_ — the diff shows what
 
 ## Before Merging
 
