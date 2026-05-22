@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "write-a-skill": {
+      "source": "tyecode/skills",
+      "sourceType": "github",
+      "skillPath": "skills/productivity/write-a-skill/SKILL.md",
+      "computedHash": "e062dba397c5821762e93264e84baaff9d5b0bf7bcf409d4e54bf518f218030c"
+    }
+  }
+}
