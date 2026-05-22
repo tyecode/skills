@@ -1,6 +1,6 @@
 ---
 name: api-design
-description: Stripe API design principles. Use when designing endpoints, defining data models, or building REST/GraphQL interfaces.
+description: Enforces Stripe API design principles for consistency, idempotency, and backwards compatibility. Use when designing endpoints, defining data models, or building REST/GraphQL interfaces.
 ---
 
 # Skill: api-design

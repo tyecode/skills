@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Git workflow guidelines including commit conventions, branch naming, and code review. Use when working with Git branches, writing commits, or merging code.
+description: Enforces Git workflow guidelines including commit conventions, branch naming, and code review. Use when working with Git branches, writing commits, or merging code.
 ---
 
 # Skill: git-workflow

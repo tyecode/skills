@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-driven development guidelines. Use when writing tests or practicing TDD.
+description: Enforces test-driven development — failing test written before any implementation code. Use when adding features, fixing bugs, writing tests, or when user says "use TDD".
 ---
 
 # Skill: tdd

@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Interview the user about a plan until shared understanding. Use when user mentions "grill me".
+description: Interviews the user about a plan until requirements are fully resolved and shared understanding is reached. Use when user mentions "grill me", requirements are vague, or before starting something significant.
 ---
 
 # Skill: grill-me

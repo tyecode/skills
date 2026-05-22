@@ -1,6 +1,6 @@
 ---
 name: zoom-out
-description: Tell the agent to zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
+description: Instructs the agent to map the call chain and boundaries before making changes, providing broader context or a higher-level perspective. Use when unfamiliar with a section of code or needing to understand how it fits into the bigger picture.
 ---
 
 # Skill: zoom-out

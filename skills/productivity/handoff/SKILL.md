@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Compact the current conversation into a handoff document for another agent to continue the work.
+description: Compacts the current conversation into a handoff document so another agent can continue the work. Use when handing off to another agent, starting a new session, or passing work context to another developer.
 ---
 
 # Skill: handoff

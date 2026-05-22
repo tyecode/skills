@@ -1,6 +1,6 @@
 ---
 name: working-backwards
-description: Amazon's Working Backwards method. Use when proposing or designing a new feature or product to ensure customer value before coding.
+description: Applies Amazon's Working Backwards method by writing a PR/FAQ before any code is written. Use when proposing or designing a new feature or product to ensure customer value before coding.
 ---
 
 # Skill: working-backwards

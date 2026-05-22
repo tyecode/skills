@@ -52,7 +52,7 @@ Built to fix the most common failure modes I see with AI coding agents. To solve
 
 **Problem**: Agents commonly forget auth checks, skip input validation, expose stack traces, and miss rate limiting.
 
-**Fix**: `/security` is a pre-ship checklist covering input validation, auth, API security, PII handling, and dependencies.
+**Fix**: `/security` runs a pre-ship checklist covering input validation, auth, API security, PII handling, and dependencies.
 
 ### #5: Hard to Transfer Work to Another Agent
 

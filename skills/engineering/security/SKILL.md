@@ -1,6 +1,6 @@
 ---
 name: security
-description: Security checklist for full-stack development. Use before marking any feature complete, when handling user input, auth, or data storage.
+description: Runs a security checklist for full-stack development covering input validation, auth, API security, PII, and dependencies. Use before marking any feature complete, when handling user input, auth, or data storage.
 ---
 
 # Skill: security

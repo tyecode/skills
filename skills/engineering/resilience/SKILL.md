@@ -1,6 +1,6 @@
 ---
 name: resilience
-description: Netflix Chaos Engineering principles. Use when building distributed systems or writing code that relies on external dependencies.
+description: Enforces Netflix Chaos Engineering principles for distributed systems resilience. Use when building distributed systems or writing code that relies on external dependencies.
 ---
 
 # Skill: resilience

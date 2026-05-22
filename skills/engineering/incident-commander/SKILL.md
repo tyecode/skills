@@ -1,6 +1,6 @@
 ---
 name: incident-commander
-description: Google SRE Incident Management (IMAG). Use when debugging a live production issue, outage, or critical bug.
+description: Runs Google SRE Incident Management (IMAG) — prioritizes mitigation over root cause and generates a postmortem. Use when debugging a live production issue, outage, or critical bug.
 ---
 
 # Skill: incident-commander
