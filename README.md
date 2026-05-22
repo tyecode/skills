@@ -22,14 +22,13 @@ Or install individual skills:
 ```bash
 npx skills add tyecode/skills@diagnose
 npx skills add tyecode/skills@security
-npx skills add tyecode/skills@react
 ```
 
 ---
 
 ## Why These Skills Exist
 
-Built to fix the most common failure modes I see with AI coding agents.
+Built to fix the most common failure modes I see with AI coding agents. To solve these problems, these skills codify the battle-tested engineering practices of top-tier tech companies (including **Amazon**, **Google**, **Netflix**, and **Stripe**) so your agent behaves like a disciplined senior engineer.
 
 ### #1: The Agent Doesn't Understand What You Want
 
@@ -69,51 +68,11 @@ Built to fix the most common failure modes I see with AI coding agents.
 
 ---
 
-## `engineering/` — Code Process Skills
+### 📚 See the Full Catalog
 
-Works on any codebase. Install these on every project:
+We have over 14+ specialized behavioral skills, including tools for TDD, API design, chaos engineering, and more.
 
-| Skill | When to Invoke | What It Does |
-|-------|---------------|--------------|
-| **karpathy-guidelines** | When writing or reviewing code | Think before coding, simplicity first, surgical changes |
-| **diagnose** | When debugging a hard bug | 6-phase diagnosis loop: reproduce → hypothesise → instrument → fix |
-| **zoom-out** | When exploring unfamiliar code | Maps call chain and boundaries before making changes |
-| **tdd** | When adding features or fixing bugs | Enforces failing test before any implementation |
-| **git-workflow** | When committing or opening a PR | Conventional commits, branch rules, PR guidelines |
-| **security** | Before marking any feature complete | Checklist: input validation, auth, rate limiting, secrets, PII |
-
----
-
-## `productivity/` — Meta Skills
-
-Domain-agnostic — useful for any knowledge work, not just coding:
-
-| Skill | When to Invoke | What It Does |
-|-------|---------------|--------------|
-| **grill-me** | Before starting something new | Interviews you until requirements are fully resolved |
-| **handoff** | When passing work to another agent | Compacts conversation into a handoff doc |
-| **caveman** | When you want compressed responses | ~75% token reduction, no loss of technical accuracy |
-
----
-
-## `frameworks/` — Framework Skills
-
-Install based on your stack:
-
-| Skill | When to Use |
-|-------|-------------|
-| **react** | React or Next.js projects |
-| **nodejs** | Node.js backend projects |
-| **electron** | Electron desktop apps |
-| **setup-pre-commit** | Node.js projects needing Husky + lint-staged |
-
----
-
-## `languages/` — Language Skills
-
-| Skill | When to Use |
-|-------|-------------|
-| **typescript** | TypeScript projects |
+👉 **[Explore the Full Catalog of Skills](AVAILABLE_SKILLS.md)**
 
 ---
 
