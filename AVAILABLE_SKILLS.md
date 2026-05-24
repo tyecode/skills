@@ -17,6 +17,8 @@ Works on any codebase. Install these on every project:
 | **incident-commander** | When debugging a live production outage | Prioritizes mitigation over root cause, generates postmortem |
 | **resilience** | When building distributed systems | Enforces circuit breakers, fallbacks, and chaos hypotheses |
 | **api-design** | When designing REST/GraphQL APIs | Enforces Stripe API pillars: consistency, idempotency, backwards compatibility |
+| **changelog** | Before a release | Scans PRs, issues, and commits since last tag and writes clean, user-facing CHANGELOG entries |
+| **release** | When cutting a release | Stamps CHANGELOG.md, bumps version, commits, tags, pushes, and publishes the GitHub Release |
 
 ## `productivity/` — Meta Skills
 

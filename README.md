@@ -24,6 +24,8 @@ npx skills add tyecode/skills@diagnose
 npx skills add tyecode/skills@security
 ```
 
+> The `changelog` and `release` skills require [`gh` CLI](https://cli.github.com) installed and authenticated.
+
 ---
 
 ## Why These Skills Exist
@@ -66,13 +68,19 @@ Built to fix the most common failure modes I see with AI coding agents. To solve
 
 **Fix**: `/caveman` switches to ultra-compressed communication (~75% less tokens) while keeping full technical accuracy.
 
+### #7: Releases Are Manual and Error-Prone
+
+**Problem**: Cutting a release means manually writing changelog entries, bumping versions, tagging, and pushing — easy to forget a step or write vague release notes.
+
+**Fix**: `/changelog` scans PRs, issues, and commits to write user-facing release notes. `/release` suggests a version, stamps the changelog, pushes the tag, and publishes the GitHub Release — all in one workflow.
+
 ---
 
-### 📚 See the Full Catalog
+### See the Full Catalog
 
-We have over 14+ specialized behavioral skills, including tools for TDD, API design, chaos engineering, and more.
+We have 16 specialized behavioral skills, including tools for TDD, API design, chaos engineering, and more.
 
-👉 **[Explore the Full Catalog of Skills](AVAILABLE_SKILLS.md)**
+**[Explore the Full Catalog of Skills](AVAILABLE_SKILLS.md)**
 
 ---
 
