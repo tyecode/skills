@@ -25,10 +25,22 @@ Use this skill when:
 
 - `feat` — new capability the user can see
 - `fix` — bug fix
+- `perf` — performance improvement with no behavior change
 - `refactor` — restructure without behavior change
 - `test` — adding or fixing tests
 - `docs` — documentation only
 - `chore` — tooling, deps, config
+- `ci` — CI/CD pipeline changes
+- `style` — formatting only (whitespace, semicolons, etc.)
+
+**Breaking changes:**
+
+Append `!` after the type to signal a breaking change:
+```
+feat!: remove deprecated /v1 endpoints
+fix!: change auth token format
+```
+Or add `BREAKING CHANGE:` in the commit body. Both trigger a major version bump in `/release`.
 
 **Rules:**
 
