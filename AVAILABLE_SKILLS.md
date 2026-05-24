@@ -8,14 +8,14 @@ Works on any codebase. Install these on every project:
 
 | Skill | When to Invoke | What It Does |
 |-------|---------------|--------------|
-| **karpathy-guidelines** | When writing or reviewing code | Think before coding, simplicity first, surgical changes |
+| **karpathy-guidelines** | Always-on global install | Think before coding, simplicity first, surgical changes — applied automatically |
 | **diagnose** | When debugging a hard bug | 6-phase diagnosis loop: reproduce → hypothesise → instrument → fix |
 | **zoom-out** | When exploring unfamiliar code | Maps call chain and boundaries before making changes |
 | **tdd** | When adding features or fixing bugs | Enforces failing test before any implementation |
-| **git-workflow** | When committing or opening a PR | Conventional commits, branch rules, PR guidelines |
-| **security** | Before marking any feature complete | Checklist: input validation, auth, rate limiting, secrets, PII |
+| **git-workflow** | Always-on global install | Conventional commits, branch rules, and PR guidelines — applied automatically |
+| **security** | Always-on global install | Checklist: input validation, auth, rate limiting, secrets, PII — applied automatically before shipping |
 | **incident-commander** | When debugging a live production outage | Prioritizes mitigation over root cause, generates postmortem |
-| **resilience** | When building distributed systems | Enforces circuit breakers, fallbacks, and chaos hypotheses |
+| **resilience** | Always-on global install | Enforces circuit breakers, fallbacks, and chaos hypotheses — applied automatically on external dependencies |
 | **api-design** | When designing REST/GraphQL APIs | Enforces Stripe API pillars: consistency, idempotency, backwards compatibility |
 | **changelog** | Before a release | Scans PRs, issues, and commits since last tag and writes clean, user-facing CHANGELOG entries |
 | **release** | When cutting a release | Stamps CHANGELOG.md, bumps version, commits, tags, pushes, and publishes the GitHub Release |

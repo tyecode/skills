@@ -1,15 +1,13 @@
 ---
 name: karpathy-guidelines
-description: Applies behavioral guidelines to reduce common LLM coding mistakes (think-before-coding, simplicity, surgical changes). Use when writing, reviewing, or refactoring code.
+description: Passive guardrail that reduces common LLM coding mistakes. Install globally — enforces think-before-coding, simplicity, and surgical changes automatically whenever writing or reviewing code.
 ---
 
 # Skill: karpathy-guidelines
 
 ## When to Use This Skill
 
-Use this skill when:
-- Writing, reviewing, or refactoring code
-- User asks to implement something
+This is a passive guardrail — install it globally and it applies automatically. The agent follows these rules whenever it writes, reviews, or refactors code. You do not need to invoke it explicitly.
 
 ## 1. Think Before Coding
 

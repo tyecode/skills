@@ -1,18 +1,13 @@
 ---
 name: security
-description: Runs a security checklist for full-stack development covering input validation, auth, API security, PII, and dependencies. Use before marking any feature complete, when handling user input, auth, or data storage.
+description: Passive guardrail that enforces a security checklist for full-stack development. Install globally — automatically runs before any feature touching user input, auth, data storage, or API endpoints is marked complete.
 ---
 
 # Skill: security
 
 ## When to Use This Skill
 
-Run this checklist before marking any feature complete that involves:
-- User input
-- Authentication or authorization
-- Data storage or retrieval
-- File uploads or external URLs
-- API endpoints
+This is a passive guardrail — install it globally and it applies automatically. The agent runs this checklist before marking any feature complete that involves user input, auth, data storage, file uploads, or API endpoints. You do not need to invoke it explicitly.
 
 ## Input Validation
 

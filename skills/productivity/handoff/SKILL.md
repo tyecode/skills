@@ -14,16 +14,30 @@ Use this skill when:
 
 ## Guidelines
 
-Write a handoff document summarizing the current conversation so a fresh agent can continue.
+Write a handoff document as a markdown file and save it to `/tmp/handoff.md` — not the current workspace.
 
-Save to the user's temp directory - not the current workspace.
+### Required sections
 
-Include:
-- What has been done
-- What's remaining
-- Key decisions made
-- Suggested skills to use
+```markdown
+# Handoff
 
-Do not duplicate content already in PRDs, plans, ADRs, issues, or commits. Reference them by path instead.
+## What was done
+Brief summary of completed work.
 
-Redact sensitive info (API keys, passwords, PII).
+## What's remaining
+Ordered list of next steps.
+
+## Key decisions
+Decisions made and the reasoning behind them — so the next agent doesn't re-litigate them.
+
+## Suggested skills
+Which skills the next agent should have loaded (e.g. `git-workflow`, `tdd`).
+
+## References
+Links or paths to relevant files, PRs, issues, or docs — do not duplicate their content here.
+```
+
+### Rules
+- Do not duplicate content already in PRDs, plans, ADRs, issues, or commits — reference by path instead.
+- Redact sensitive info (API keys, passwords, PII).
+- Keep it short enough that a fresh agent can read it in one pass — if it exceeds one page, you're including too much detail.

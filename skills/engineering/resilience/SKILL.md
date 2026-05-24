@@ -1,16 +1,13 @@
 ---
 name: resilience
-description: Enforces Netflix Chaos Engineering principles for distributed systems resilience. Use when building distributed systems or writing code that relies on external dependencies.
+description: Passive guardrail that enforces Netflix Chaos Engineering principles. Install globally — automatically applies circuit breakers, fallbacks, and chaos hypotheses whenever writing code that touches external dependencies.
 ---
 
 # Skill: resilience
 
 ## When to Use This Skill
 
-Use this skill when:
-- Writing code that makes network requests (API calls, DB queries).
-- Building microservices or distributed system components.
-- The user asks you to "finalize" or "ship" a feature.
+This is a passive guardrail — install it globally and it applies automatically. The agent enforces these patterns whenever it writes code that makes network requests, touches external dependencies, or ships a feature. You do not need to invoke it explicitly.
 
 ## The Core Philosophy
 

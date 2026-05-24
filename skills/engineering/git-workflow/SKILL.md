@@ -1,17 +1,13 @@
 ---
 name: git-workflow
-description: Enforces Git workflow guidelines including commit conventions, branch naming, and code review. Use when working with Git branches, writing commits, or merging code.
+description: Passive guardrail that enforces Git workflow guidelines. Install globally — the agent applies commit conventions, branch naming, and PR rules automatically without being asked.
 ---
 
 # Skill: git-workflow
 
 ## When to Use This Skill
 
-Use this skill when:
-
-- Writing a commit message
-- Creating a branch
-- Preparing a PR
+This is a passive guardrail — install it globally and it applies automatically. The agent follows these rules whenever it writes a commit, creates a branch, or prepares a PR. You do not need to invoke it explicitly.
 
 ## Commits
 
@@ -49,6 +45,43 @@ Or add `BREAKING CHANGE:` in the commit body. Both trigger a major version bump 
 - Never commit directly to `main` or `master`.
 - Never commit with `--no-verify` unless you have an explicit reason and the user approves.
 
+## Commit Workflow
+
+When asked to commit changes, always follow this analysis process — never jump straight to `git add`:
+
+### 1. Understand What Changed
+```bash
+git status
+git diff
+```
+Read the full diff. Understand what each change does before writing any message.
+
+### 2. Group by Logical Concern
+Identify how many distinct concerns are in the working tree:
+- A new feature touches `src/auth/` and `tests/auth/` → one commit
+- A bug fix touches `src/api/` while an unrelated refactor touches `src/utils/` → two commits
+- If you find yourself writing "and" in the message → split into two commits
+
+### 3. Stage and Commit Each Group Separately
+```bash
+# Group 1
+git add src/auth/ tests/auth/
+git commit -m "feat(auth): add OAuth2 login support"
+
+# Group 2
+git add src/utils/
+git commit -m "refactor(utils): extract date formatting helpers"
+```
+
+Never use `git add .` or `git add -A` unless every changed file belongs to the same logical concern.
+
+### 4. Write the Message Based on What Actually Changed
+Read the staged diff — not the user's request — to write the commit message. The message describes the change, not the intent.
+
+```bash
+git diff --cached   # confirm what is staged before committing
+```
+
 ## Branches
 
 `<type>/<short-description>` — kebab-case, no ticket numbers unless the project uses them.
@@ -65,6 +98,38 @@ refactor/extract-payment-service
 - Keep PRs focused — one concern per PR
 - If a PR is getting large, split it before opening
 - Add a short description of _why_, not _what_ — the diff shows what
+
+## Force Push
+
+- **Never force push to `main` or `master`** — no exceptions.
+- Only force push to your own feature branch, and only after the user explicitly approves:
+  ```bash
+  git push --force-with-lease origin <branch>   # safer than --force
+  ```
+- Use `--force-with-lease` over `--force` — it fails if someone else has pushed to the branch since your last fetch, preventing accidental overwrites.
+
+## Undoing Changes
+
+Choose based on whether the commit has been pushed:
+
+| Situation | Command | Safe? |
+|-----------|---------|-------|
+| Undo last commit, keep changes staged | `git reset --soft HEAD~1` | ✅ Local only |
+| Undo last commit, unstage changes | `git reset HEAD~1` | ✅ Local only |
+| Undo a pushed commit | `git revert <hash>` | ✅ Creates new commit |
+| Discard all local changes | `git reset --hard HEAD` | ⚠️ Destructive — ask user first |
+
+**Never run `git reset --hard` on pushed commits** — use `git revert` instead. Revert is always safe because it adds a new commit rather than rewriting history.
+
+## Rebasing
+
+- **Rebase your feature branch** before opening a PR to keep history clean:
+  ```bash
+  git fetch origin
+  git rebase origin/main
+  ```
+- **Never rebase shared branches** (`main`, `master`, `develop`) — rewriting shared history breaks everyone's local copies.
+- If a rebase produces conflicts, resolve them file by file, then `git rebase --continue`. If it goes wrong, `git rebase --abort` returns to the pre-rebase state safely.
 
 ## Before Merging
 
