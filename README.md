@@ -24,7 +24,7 @@ npx skills add tyecode/skills@diagnose
 npx skills add tyecode/skills@security
 ```
 
-> The `changelog` and `release` skills require [`gh` CLI](https://cli.github.com) installed and authenticated.
+> The `changelog`, `release`, and `secure-commit` skills require [`gh` CLI](https://cli.github.com) installed and authenticated.
 
 ---
 
@@ -68,7 +68,13 @@ Built to fix the most common failure modes I see with AI coding agents. To solve
 
 **Fix**: `/caveman` switches to ultra-compressed communication (~75% less tokens) while keeping full technical accuracy.
 
-### #7: Releases Are Manual and Error-Prone
+### #7: The Agent Commits Sensitive Files
+
+**Problem**: Agents commit `.env`, API keys, private keys, and credentials without realizing it — and once pushed, the secret is exposed even if you delete it later.
+
+**Fix**: `/secure-commit` blocks sensitive files from being staged or committed. Run `/secure-commit all` to scan staged files, full local history, and all GitHub remote branches at once — and fix anything it finds.
+
+### #8: Releases Are Manual and Error-Prone
 
 **Problem**: Cutting a release means manually writing changelog entries, bumping versions, tagging, and pushing — easy to forget a step or write vague release notes.
 
@@ -78,7 +84,7 @@ Built to fix the most common failure modes I see with AI coding agents. To solve
 
 ### See the Full Catalog
 
-We have 16 specialized behavioral skills, including tools for TDD, API design, chaos engineering, and more.
+We have 17 specialized behavioral skills, including tools for TDD, API design, chaos engineering, and more.
 
 **[Explore the Full Catalog of Skills](AVAILABLE_SKILLS.md)**
 

@@ -19,6 +19,7 @@ Works on any codebase. Install these on every project:
 | **api-design** | When designing REST/GraphQL APIs | Enforces Stripe API pillars: consistency, idempotency, backwards compatibility |
 | **changelog** | Before a release | Scans PRs, issues, and commits since last tag and writes clean, user-facing CHANGELOG entries |
 | **release** | When cutting a release | Stamps CHANGELOG.md, bumps version, commits, tags, pushes, and publishes the GitHub Release |
+| **secure-commit** | Always-on global install, or invoke with `/secure-commit` | Scans staged files or git history for sensitive data; as a global install, blocks leaks automatically on every git add/commit |
 
 ## `productivity/` — Meta Skills
 
