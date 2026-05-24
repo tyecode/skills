@@ -78,20 +78,45 @@ git tag -l "v<version>"
 ```
 If it returns output, stop and warn the user: "Tag v<version> already exists. Please choose a different version."
 
-### 7. Commit, Tag, and Publish
-- Write the release notes to a temp file to avoid shell escaping issues:
-  ```bash
-  cat > /tmp/release-notes.md << 'EOF'
-  <release body>
-  EOF
-  ```
-- Show the user the full plan and ask for approval before running anything:
-  ```bash
-  git add CHANGELOG.md package.json   # or whichever version file was changed
-  git commit -m "chore: release v<version>"
-  git tag v<version>
-  git push origin HEAD --tags
-  gh release create v<version> --title "v<version>" --notes-file /tmp/release-notes.md
-  ```
-- Wait for the user to approve. Once confirmed, run the commands in order.
-- After `gh release create` succeeds, share the GitHub Release URL with the user.
+### 7. Check for Existing Publish Workflow
+
+Check whether a GitHub Actions workflow already handles release creation:
+```bash
+grep -rl "release\|gh release create\|action-gh-release\|create-release" .github/workflows/ 2>/dev/null
+```
+
+- **If a workflow is found:** skip `gh release create` — GitHub Actions will create the release after the tag is pushed. Inform the user: "A publish workflow was detected. GitHub Actions will create the GitHub Release automatically after the tag is pushed."
+- **If no workflow is found:** proceed with `gh release create` in Step 8.
+
+### 8. Commit, Tag, and Publish
+
+Write the release notes to a temp file to avoid shell escaping issues:
+```bash
+cat > /tmp/release-notes.md << 'EOF'
+<release body>
+EOF
+```
+
+Show the user the full plan and ask for approval before running anything.
+
+**If no publish workflow exists:**
+```bash
+git add CHANGELOG.md package.json   # or whichever version file was changed
+git commit -m "chore: release v<version>"
+git tag v<version>
+git push origin HEAD --tags
+gh release create v<version> --title "v<version>" --notes-file /tmp/release-notes.md
+```
+
+**If a publish workflow exists:**
+```bash
+git add CHANGELOG.md package.json   # or whichever version file was changed
+git commit -m "chore: release v<version>"
+git tag v<version>
+git push origin HEAD --tags
+```
+
+Wait for the user to approve. Once confirmed, run the commands in order. After pushing, share the GitHub Actions URL so the user can monitor the publish pipeline:
+```bash
+gh run list --limit 1
+```
